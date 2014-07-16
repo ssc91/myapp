@@ -1,0 +1,9 @@
+<table class="table">
+<% @reviews.each do |review| %>
+  <tr>
+    <td><%= review.user_id %></td>
+    <td><%= review.user_feedback %></td>
+    <td><%= link_to 'Delete', review , method: :delete %></td>
+  </tr>
+<% end %>
+</table>

@@ -1,0 +1,26 @@
+<h1>Listing restaurants</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Rating</th>
+    <th></th>
+  </tr>
+
+<% @restaurants.each do |restaurant| %>
+  <tr>
+    <td><%= restaurant.name %></td>
+    <td><%= restaurant.address %></td>
+    <%if restaurant.ratings.collect(&:user_rating).count != 0 %>
+      <td><%= (1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count %> (based on <%= restaurant.ratings.collect(&:user_rating).count %> votes)</td>
+    <% else %>
+      <td> Not Rated </td>
+    <% end %>
+    <td><%= link_to 'Show', restaurant %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

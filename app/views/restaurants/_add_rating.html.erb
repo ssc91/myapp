@@ -1,0 +1,25 @@
+<div id="rating_container">
+  <% if @rating.user_rating == 0 %>
+    Rate Restaurant:
+  <% else %>
+    Your Ratings:
+  <% end %>
+  <div id="rating_div" class="rating"></div>
+</div>
+
+<%= form_for(@rating, :html => {:id => "rating_form"}) do |f| %>
+   <%= f.hidden_field :restaurant_id %>
+   <%= f.hidden_field :user_rating %>
+<% end %>
+
+<script type="text/javascript">
+   $( document ).ready(function() {
+       $('#rating_div').raty({
+           score: <%= @rating.user_rating %>,
+           click: function(score, evt) {
+               document.getElementById('rating_user_rating').value = score;
+               document.getElementById('rating_form').submit();
+           }
+       });
+   });
+</script>

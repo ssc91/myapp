@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<% if customersigned_in? %>
+  <%= render 'add_rating' %>
+<% end %>
+
+<p>
+  <b>Name:</b>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @restaurant.email %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @restaurant.phone %>
+</p>
+
+<% if @restaurant.ratings.collect(&:user_rating).count != 0 %>
+  <p>
+    <b>Rating:</b>
+    <%= (1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count %>
+  </p>
+
+  <p>
+    <b>Rating count:</b>
+    <%= @restaurant.ratings.collect(&:user_rating).count %>
+  </p>
+<% else %>
+  <p>
+    <b>Rating :</b>
+    Not Rated
+  </p>
+<% end %>
+
+
+
+<% if restaurantsigned_in? %>
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
+<%end%>
+
+<% if customersigned_in? %>
+  <%= render 'add_review' %>
+<% end %>
+
+<br/><br/>
+<%= render 'list_reviews' %>
