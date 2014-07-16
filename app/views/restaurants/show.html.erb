@@ -4,46 +4,47 @@
   <%= render 'add_rating' %>
 <% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @restaurant.name %>
-</p>
+<table class="table">
+<tr>
+  <td><b>Name:</b></td>
+  <td><%= @restaurant.name %></td>
+</tr>
 
-<p>
-  <b>Email:</b>
-  <%= @restaurant.email %>
-</p>
+<tr>
+  <td><b>Email:</b></td>
+  <td><%= @restaurant.email %></td>
+</tr>
 
-<p>
-  <b>Address:</b>
-  <%= @restaurant.address %>
-</p>
+<tr>
+  <td><b>Address:</b></td>
+  <td><%= @restaurant.address %></td>
+</tr>
 
-<p>
-  <b>Phone:</b>
-  <%= @restaurant.phone %>
-</p>
+<tr>
+  <td><b>Phone:</b></td>
+  <td><%= @restaurant.phone %></td>
+</tr>
 
 <% if @restaurant.ratings.collect(&:user_rating).count != 0 %>
-  <p>
-    <b>Rating:</b>
-    <%= (1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count %>
-  </p>
+  <tr>
+    <td><b>Rating:</b></td>
+    <td><%= (1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count %></td>
+  </tr>
 
-  <p>
-    <b>Rating count:</b>
-    <%= @restaurant.ratings.collect(&:user_rating).count %>
-  </p>
+  <tr>
+    <td><b>Rating count:</b></td>
+    <td><%= @restaurant.ratings.collect(&:user_rating).count %></td>
+  </tr>
 <% else %>
-  <p>
-    <b>Rating :</b>
-    Not Rated
-  </p>
+  <tr>
+    <td><b>Rating :</b></td>
+    <td>Not Rated</td>
+  </tr>
 <% end %>
+</table>
 
 
-
-<% if restaurantsigned_in? %>
+<% if restaurantsigned_in? and current_restaurant.id == @restaurant.id %>
   <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%end%>
 
@@ -51,5 +52,8 @@
   <%= render 'add_review' %>
 <% end %>
 
+<h2> Reviews </h2>
 <br/><br/>
 <%= render 'list_reviews' %>
+
+
