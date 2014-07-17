@@ -2,7 +2,7 @@
 <br/><br/>
 <table class="table">
   <tr>
-    <th width="15%" style="text-align:center">Name</th>
+    <th width="15%" style="text-align:center">Name<br/><p class="btn btn-mini">Rating</p></th>
     <th width="20%" style="text-align:center">Address</th>
     <th width="15%" style="text-align:center">Phone</th>
     <th width="30%" style="text-align:center">Cuisine</th>
@@ -17,9 +17,9 @@
       <%= link_to @this_restaurant.name, @this_restaurant , class: "mylinks"%>
       <br/>
       <%if @this_restaurant.ratings.collect(&:user_rating).count != 0 %>
-        <%= id_rating_pair[1] %> (based on <%= @this_restaurant.ratings.collect(&:user_rating).count %> votes)
+       <p class="btn btn-mini"> <%= id_rating_pair[1] %></p>
       <% else %>
-        Not Rated 
+        <p>Not Rated </p>
       <% end %>
     </td>
     <td style="text-align:center"><%= @this_restaurant.address %></td>

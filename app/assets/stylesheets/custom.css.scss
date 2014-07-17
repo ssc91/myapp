@@ -83,9 +83,10 @@ footer {
   border-top: 1px solid $grayMediumLight;
   color: $grayLight;
   a {
-    color: $gray;
+    color: white;
     &:hover {
-      color: $grayDarker;
+      color: white;
+      text-decoration: none;
     }
   }
   small {
@@ -286,8 +287,12 @@ aside {
 
 .table th, .table td { 
      border-top: none !important;
- }
+}
 
  .btn{
     color: white !important;
- }
+}
+
+.btn-mini{
+    color:blue !important;  
+}

@@ -17,8 +17,8 @@
     <td><%= item.item_name %></td>
     <td><%= item.item_price %></td>
     <% if restaurantsigned_in? %>
-      <td><%= link_to 'Edit', edit_item_path(item),class: "btn-primary" %></td>
-      <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn-primary"%></td>
+      <td><%= link_to 'Edit', edit_item_path(item),class: "btn btn-mini" %></td>
+      <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-mini"%></td>
     <%end%>
   </tr>
   <% end %>
@@ -30,5 +30,4 @@
   <h2> Sorry !! You don't have any items. Try adding some. </h2>
 
 <%end%>
-
-<%= link_to 'Add Item', new_item_path %>
+<%= link_to 'Add Item', new_item_path , class: "btn btn-primary"%>
