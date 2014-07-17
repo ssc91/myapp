@@ -5,7 +5,11 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
     @restaurants_ids_rating_hash = {}
     @restaurants.each do |restaurant|
-      @restaurants_ids_rating_hash[restaurant.id] = (1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count
+      if restaurant.ratings.collect(&:user_rating).count != 0
+        @restaurants_ids_rating_hash[restaurant.id] = (1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count
+      else
+        @restaurants_ids_rating_hash[restaurant.id] = 0
+      end      
     end
     # list of list where first element is rest. id and second is its rating
     @sorted_list_on_rating = @restaurants_ids_rating_hash.sort_by {|_key, value| value}.reverse

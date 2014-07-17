@@ -17,8 +17,8 @@
     <td><%= item.item_name %></td>
     <td><%= item.item_price %></td>
     <% if restaurantsigned_in? %>
-      <td><%= link_to 'Edit', edit_item_path(item) %></td>
-      <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Edit', edit_item_path(item),class: "btn-primary" %></td>
+      <td><%= link_to 'Delete', item, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn-primary"%></td>
     <%end%>
   </tr>
   <% end %>

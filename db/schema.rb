@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140716183306) do
+ActiveRecord::Schema.define(:version => 20140717104648) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20140716183306) do
     t.string   "address"
     t.string   "phone"
     t.string   "remember_token"
+    t.string   "cuisine"
+    t.string   "timings"
   end
 
   add_index "restaurants", ["remember_token"], :name => "index_restaurants_on_remember_token"

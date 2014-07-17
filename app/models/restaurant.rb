@@ -1,5 +1,5 @@
 class Restaurant < ActiveRecord::Base
-  attr_accessible :address, :email, :name, :phone, :password, :password_confirmation, :remember_token
+  attr_accessible :address, :email, :name, :phone, :password, :password_confirmation, :remember_token, :timings, :cuisine
   has_secure_password
 
   has_many :orders, foreign_key: "restaurant_id", dependent: :destroy
@@ -12,6 +12,8 @@ class Restaurant < ActiveRecord::Base
   before_save :create_remember_token
  
   validates :address, presence: true
+  validates :cuisine, presence: true
+  validates :timings, presence: true
   validates :name,  presence: true, length: {maximum: 50}
   validates :phone,  presence: true, length: {is: 10}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

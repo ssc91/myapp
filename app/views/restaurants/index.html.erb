@@ -1,23 +1,31 @@
-<h1>Listing restaurants</h1>
-
+<h2>Listing restaurants</h2>
+<br/><br/>
 <table class="table">
   <tr>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Rating</th>
+    <th width="15%" style="text-align:center">Name</th>
+    <th width="20%" style="text-align:center">Address</th>
+    <th width="15%" style="text-align:center">Phone</th>
+    <th width="30%" style="text-align:center">Cuisine</th>
+    <th width="20%" style="text-align:center">Timings</th>
   </tr>
 
 
 <% @sorted_list_on_rating.each do |id_rating_pair| %>
   <% @this_restaurant = Restaurant.find_by_id(id_rating_pair[0]) %>
   <tr>
-    <td><%= link_to @this_restaurant.name, @this_restaurant %></td>
-    <td><%= @this_restaurant.address %></td>
-    <%if @this_restaurant.ratings.collect(&:user_rating).count != 0 %>
-      <td> <%= id_rating_pair[1] %> (based on <%= @this_restaurant.ratings.collect(&:user_rating).count %> votes)</td>
-    <% else %>
-      <td> Not Rated </td>
-    <% end %>
+    <td style="text-align:center">
+      <%= link_to @this_restaurant.name, @this_restaurant , class: "mylinks"%>
+      <br/>
+      <%if @this_restaurant.ratings.collect(&:user_rating).count != 0 %>
+        <%= id_rating_pair[1] %> (based on <%= @this_restaurant.ratings.collect(&:user_rating).count %> votes)
+      <% else %>
+        Not Rated 
+      <% end %>
+    </td>
+    <td style="text-align:center"><%= @this_restaurant.address %></td>
+    <td style="text-align:center"><%= @this_restaurant.phone %></td>
+    <td style="text-align:center"><%= @this_restaurant.cuisine %></td>
+    <td style="text-align:center"><%= @this_restaurant.timings %></td>
   </tr>
 <% end %>
 </table>

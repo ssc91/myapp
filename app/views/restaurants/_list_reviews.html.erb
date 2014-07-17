@@ -1,15 +1,16 @@
-<%if @reviews.count != 0 %>
-    <h2> All Reviews </h2>
-	<table class="table">
-	<% @reviews.each do |review| %>
-	  <% @reviewer = Customer.find_by_id(review.user_id) %>
-	  <tr>
-	    <td><%= link_to @reviewer.name, @reviewer %></td>
-	    <td><%= review.user_feedback %></td>
-	    <% if customersigned_in? && (current_customer.id == review.user_id) %>
-	      <td><%= link_to 'Delete', review , method: :delete ,data: { confirm: 'Are you sure?' } %></td>
-	    <%end%>
-	  </tr>
-	<% end %>
-	</table>
-<%end%>
+<div style="width:48%;overflow-x:hidden;overflow-y:scroll;float:right;height:350px;margin-left:2%;margin-top:50px;">
+	<%if @reviews.count != 0 %>
+	    <h2> All Reviews </h2>
+		<table class="table">
+		<% @reviews.each do |review| %>
+		  <% @reviewer = Customer.find_by_id(review.user_id) %>
+		  <tr>
+		  	<td><%= review.user_feedback %> by <%= link_to @reviewer.name, @reviewer, class: "mylinks_reviews" %> 
+		    <% if customersigned_in? && (current_customer.id == review.user_id) %>
+		      <%= link_to 'Delete', review , method: :delete ,data: { confirm: 'Are you sure?' } ,class: "btn-primary"%>
+	        <%end%>
+		  </tr>
+		<% end %>
+		</table>
+	<%end%>
+</div>

@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<div>
+	<table class="table">
+	  <tr>
+	    <td><b>Name:</b></td>
+	    <td><%= @customer.name %></td>
+	  </tr>
 
-<p>
-  <b>Name:</b>
-  <%= @customer.name %>
-</p>
+	  <tr>
+	    <td><b>Email:</b></td>
+	    <td><%= @customer.email %></td>
+	  </tr>
 
-<p>
-  <b>Email:</b>
-  <%= @customer.email %>
-</p>
+	  <tr>
+	    <td><b>Address:</b></td>
+	    <td><%= @customer.address %></td>
+	  </tr>
 
-<p>
-  <b>Address:</b>
-  <%= @customer.address %>
-</p>
-
-<p>
-  <b>Phone:</b>
-  <%= @customer.phone %>
-</p>
+	  <tr>
+	    <td><b>Phone:</b></td>
+	    <td><%= @customer.phone %></td>
+	  </tr>
+	</table>
+</div>
 
 <% if customersigned_in? && (@customer.id == current_customer.id) %>
-  <%= link_to 'Edit', edit_customer_path(@customer) %>
+  <%= link_to 'Edit', edit_customer_path(@customer) , class: "btn btn-primary" %>
 <%end%>

@@ -261,3 +261,33 @@ aside {
     margin: 1px 1px;
   }
 }
+
+.mylinks{
+  color: blue !important;
+  font-size: 18px !important;
+}
+
+.mylinks:hover{
+  color: blue;
+  cursor: pointer;
+  background-color: white;
+}
+
+.mylinks_reviews{
+  color: blue !important;
+  font-size: 12px !important;
+}
+
+.mylinks_reviews:hover{
+  color: blue;
+  cursor: pointer;
+  background-color: white;
+}
+
+.table th, .table td { 
+     border-top: none !important;
+ }
+
+ .btn{
+    color: white !important;
+ }

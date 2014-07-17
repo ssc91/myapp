@@ -4,60 +4,68 @@
   <%= render 'add_rating' %>
 <% end %>
 
-<table class="table">
-<tr>
-  <td><b>Name:</b></td>
-  <td><%= @restaurant.name %></td>
-</tr>
-
-<tr>
-  <td><b>Email:</b></td>
-  <td><%= @restaurant.email %></td>
-</tr>
-
-<tr>
-  <td><b>Address:</b></td>
-  <td><%= @restaurant.address %></td>
-</tr>
-
-<tr>
-  <td><b>Phone:</b></td>
-  <td><%= @restaurant.phone %></td>
-</tr>
-
-<% if @restaurant.ratings.collect(&:user_rating).count != 0 %>
+<div>
+  <table class="table">
   <tr>
-    <td><b>Rating:</b></td>
-    <td><%= (1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count %></td>
+    <td><b>Name:</b></td>
+    <td><%= @restaurant.name %></td>
   </tr>
 
   <tr>
-    <td><b>Rating count:</b></td>
-    <td><%= @restaurant.ratings.collect(&:user_rating).count %></td>
+    <td><b>Email:</b></td>
+    <td><%= @restaurant.email %></td>
   </tr>
-<% else %>
+
   <tr>
-    <td><b>Rating :</b></td>
-    <td>Not Rated</td>
+    <td><b>Address:</b></td>
+    <td><%= @restaurant.address %></td>
   </tr>
-<% end %>
-</table>
+
+  <tr>
+    <td><b>Phone:</b></td>
+    <td><%= @restaurant.phone %></td>
+  </tr>
+
+  <tr>
+    <td><b>Timings:</b></td>
+    <td><%= @restaurant.timings %></td>
+  </tr>
+
+  <tr>
+    <td><b>Cuisine:</b></td>
+    <td><%= @restaurant.cuisine %></td>
+  </tr>
+
+  <% if @restaurant.ratings.collect(&:user_rating).count != 0 %>
+    <tr>
+      <td><b>Rating:</b></td>
+      <td><%= (1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count %></td>
+    </tr>
+
+    <tr>
+      <td><b>Rating count:</b></td>
+      <td><%= @restaurant.ratings.collect(&:user_rating).count %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td><b>Rating :</b></td>
+      <td>Not Rated</td>
+    </tr>
+  <% end %>
+  </table>
 
 
-<% if restaurantsigned_in? and current_restaurant.id == @restaurant.id %>
-  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
-<%end%>
+  <% if restaurantsigned_in? and current_restaurant.id == @restaurant.id %>
+    <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: "btn btn-primary" %>
+  <%end%>
+</div>
 
-<% if customersigned_in? or restaurantsigned_in? %>
-  <%= render 'list_menu' %>
-<% end %>
-
-<br/><br/>
-<% if customersigned_in? %>
-  <%= render 'add_review' %>
-<% end %>
-
-<br/><br/>
-<%= render 'list_reviews' %>
-
-
+<div>
+  <% if customersigned_in? or restaurantsigned_in? %>
+    <%= render 'list_menu' %>
+  <% end %>
+  <%= render 'list_reviews' %>
+  <% if customersigned_in? %>
+    <%= render 'add_review' %>
+  <% end %>
+</div>

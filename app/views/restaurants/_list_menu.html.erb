@@ -1,11 +1,13 @@
-<%if @items.count != 0 %>
-	<h2> Menu </h2>
-	<table class="table">
-	<% @items.each do |item| %>
-	  <tr>
-	    <td><%= item.item_name %></td>
-	    <td><%= item.item_price %></td>
-	  </tr>
-	<% end %>
-	</table>
-<%end%>
+<div style="float:left;width:50%;height:605px;overflow-y:scroll;margin-top:50px;">
+	<%if @items.count != 0 %>
+		<h2> Menu </h2>
+		<table class="table">
+		<% @items.each do |item| %>
+		  <tr>
+		    <td width="25%" style="text-align:left;"> <%= item.item_name %></td>
+		    <td width="25%" style="text-align:center;"> <%= item.item_price %></td>
+		  </tr>
+		<% end %>
+		</table>
+	<%end%>
+</div>

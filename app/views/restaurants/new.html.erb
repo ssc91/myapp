@@ -17,12 +17,18 @@
       <%= f.label :phone %>
       <%= f.text_field :phone %>
 
+      <%= f.label :timings %>
+      <%= f.text_field :timings %>
+
+      <%= f.label :cuisine %>
+      <%= f.text_field :cuisine %>
+
       <%= f.label :password %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
-
+      <br/><br/>
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>

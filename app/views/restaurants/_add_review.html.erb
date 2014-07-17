@@ -1,9 +1,11 @@
-<%= form_for(@review) do |f| %>
-  <%= render 'shared/error_messages', object: f.object %>
-  <div class="field">
-    <div><%= f.hidden_field :restaurant_id %></div>
-    <%= f.text_area :user_feedback, placeholder: "Add review ...." %>
-  </div>
-  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-<% end %>
+<div style="float:left;width:420px;margin-left:5%;margin-top:5px;height:250px;">
+	<%= form_for(@review) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <div class="field">
+	    <div><%= f.hidden_field :restaurant_id %></div>
+	    <%= f.text_area :user_feedback, placeholder: "Add review ....", style: "margin-top:30px;width:400px;max-height:150px" %>
+	  </div>
+	  <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+	<% end %>
+</div>
 
