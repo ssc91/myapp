@@ -1,37 +1,46 @@
-<h1>Listing reviews</h1>
+<% if @reviews_customer.count != 0 %>
 
-<% if customersigned_in? %>
-  <table class="table">
+  <h2>Listing reviews</h2>
+
+  <% if customersigned_in? %>
+    <table class="table">
+      <tr>
+        <th>Restaurant</th>
+        <th>Your feedback</th>
+        <th></th>
+      </tr>
+
+    <% @reviews_customer.each do |review| %>
+      <% @this_restaurant = Restaurant.find_by_id(review.restaurant_id) %>
+      <tr>
+        <td><%= link_to @this_restaurant.name, @this_restaurant %></td>
+        <td><%= review.user_feedback %></td>
+        <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+    </table>
+
+  <% elsif restaurantsigned_in? %>
+    <table class="table">
     <tr>
-      <th>Restaurant</th>
-      <th>Your feedback</th>
-      <th></th>
+      <th>User</th>
+      <th>User feedback</th>
     </tr>
 
-  <% @reviews_customer.each do |review| %>
-    <tr>
-      <td><%= review.restaurant_id %></td>
-      <td><%= review.user_feedback %></td>
-      <td><%= link_to 'Delete', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </table>
+    <% @reviews_restaurant.each do |review| %>
+      <% @this_customer = Customer.find_by_id(review.user_id) %>
+      <tr>
+        <td><%= link_to @this_customer.name, @this_customer %></td>
+        <td><%= review.user_feedback %></td>
+      </tr>
+    <% end %>
+    </table>
+  <%end%>
 
-<% elsif restaurantsigned_in? %>
-  <table class="table">
-  <tr>
-    <th>User</th>
-    <th>User feedback</th>
-  </tr>
+<%else%>
+ <h2> Sorry !! You don't have any reviews </h2>
 
-  <% @reviews_restaurant.each do |review| %>
-    <tr>
-      <td><%= review.user_id %></td>
-      <td><%= review.user_feedback %></td>
-    </tr>
-  <% end %>
-  </table>
-<%end%>
+ <%end%>
 
 
 

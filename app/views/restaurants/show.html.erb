@@ -48,11 +48,15 @@
   <%= link_to 'Edit', edit_restaurant_path(@restaurant) %>
 <%end%>
 
+<% if customersigned_in? or restaurantsigned_in? %>
+  <%= render 'list_menu' %>
+<% end %>
+
+<br/><br/>
 <% if customersigned_in? %>
   <%= render 'add_review' %>
 <% end %>
 
-<h2> Reviews </h2>
 <br/><br/>
 <%= render 'list_reviews' %>
 

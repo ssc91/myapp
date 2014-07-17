@@ -3,7 +3,12 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
-
+    @restaurants_ids_rating_hash = {}
+    @restaurants.each do |restaurant|
+      @restaurants_ids_rating_hash[restaurant.id] = (1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count
+    end
+    # list of list where first element is rest. id and second is its rating
+    @sorted_list_on_rating = @restaurants_ids_rating_hash.sort_by {|_key, value| value}.reverse
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @restaurants }
@@ -13,6 +18,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    @items = Item.find_all_by_restaurant_id(params[:id])
     @restaurant = Restaurant.find(params[:id])
     @reviews = Review.find_all_by_restaurant_id(params[:id])
     if customersigned_in?

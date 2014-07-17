@@ -5,19 +5,19 @@
     <th>Name</th>
     <th>Address</th>
     <th>Rating</th>
-    <th></th>
   </tr>
 
-<% @restaurants.each do |restaurant| %>
+
+<% @sorted_list_on_rating.each do |id_rating_pair| %>
+  <% @this_restaurant = Restaurant.find_by_id(id_rating_pair[0]) %>
   <tr>
-    <td><%= restaurant.name %></td>
-    <td><%= restaurant.address %></td>
-    <%if restaurant.ratings.collect(&:user_rating).count != 0 %>
-      <td><%= (1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count %> (based on <%= restaurant.ratings.collect(&:user_rating).count %> votes)</td>
+    <td><%= link_to @this_restaurant.name, @this_restaurant %></td>
+    <td><%= @this_restaurant.address %></td>
+    <%if @this_restaurant.ratings.collect(&:user_rating).count != 0 %>
+      <td> <%= id_rating_pair[1] %> (based on <%= @this_restaurant.ratings.collect(&:user_rating).count %> votes)</td>
     <% else %>
       <td> Not Rated </td>
     <% end %>
-    <td><%= link_to 'Show', restaurant %></td>
   </tr>
 <% end %>
 </table>

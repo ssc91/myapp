@@ -39,6 +39,9 @@ Myapp::Application.routes.draw do
   # reviews index
   match '/reviews', to: 'reviews#index'
 
+  # items index
+  match '/items', to: 'items#index'
+
   
 
   # The priority is based upon order of creation:

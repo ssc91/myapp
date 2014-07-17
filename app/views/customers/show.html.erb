@@ -20,5 +20,6 @@
   <%= @customer.phone %>
 </p>
 
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<% if customersigned_in? && (@customer.id == current_customer.id) %>
+  <%= link_to 'Edit', edit_customer_path(@customer) %>
+<%end%>

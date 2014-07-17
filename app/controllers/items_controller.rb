@@ -2,12 +2,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @items }
-    end
+    @items = Item.find_all_by_restaurant_id(current_restaurant.id)
   end
 
   # GET /items/1
@@ -40,16 +35,12 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(params[:item])
-
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        format.json { render json: @item, status: :created, location: @item }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    @item = current_restaurant.items.build(params[:item])
+    if @item.save
+      flash[:success] = "New item added to your menu !!"
+      redirect_to items_path
+    else
+      flash[:error] = "Something wrong happened. Please try again later."
     end
   end
 

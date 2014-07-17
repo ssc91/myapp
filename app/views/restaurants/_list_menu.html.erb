@@ -1,0 +1,11 @@
+<%if @items.count != 0 %>
+	<h2> Menu </h2>
+	<table class="table">
+	<% @items.each do |item| %>
+	  <tr>
+	    <td><%= item.item_name %></td>
+	    <td><%= item.item_price %></td>
+	  </tr>
+	<% end %>
+	</table>
+<%end%>
