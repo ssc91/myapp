@@ -26,7 +26,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    @items = Item.find_all_by_restaurant_id(params[:id])
+    @items = Item.order("item_price ASC").where("restaurant_id == ? ",params[:id])
     @restaurant = Restaurant.find(params[:id])
     @reviews = Review.find_all_by_restaurant_id(params[:id])
     if customersigned_in?

@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
   
 
   def index
-    @items = Item.find_all_by_restaurant_id(current_restaurant.id)
+    @items = Item.order("item_price ASC").where("restaurant_id == ? ",current_restaurant.id)
   end
 
   # GET /items/1

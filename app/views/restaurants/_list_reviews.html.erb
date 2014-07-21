@@ -5,7 +5,7 @@
 		<% @reviews.each do |review| %>
 		  <% @reviewer = Customer.find_by_id(review.user_id) %>
 		  <tr>
-		  	<td><%= review.user_feedback %> by <%= link_to @reviewer.name, @reviewer, class: "mylinks_reviews" %> 
+		  	<td><%= review.user_feedback %> by <%= link_to @reviewer.name, @reviewer, class: "mylinks_reviews_1" %> 
 		    <% if customersigned_in? && (current_customer.id == review.user_id) %>
 		      <%= link_to 'Delete', review , method: :delete ,data: { confirm: 'Are you sure?' } ,class: "btn-primary"%>
 	        <%end%>
