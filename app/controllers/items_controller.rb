@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
+
+  before_filter :signed_in_user, only: [:index,:show]
+  
+
   def index
     @items = Item.find_all_by_restaurant_id(current_restaurant.id)
   end
@@ -71,4 +75,6 @@ class ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
 end

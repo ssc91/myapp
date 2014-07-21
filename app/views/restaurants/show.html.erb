@@ -39,7 +39,7 @@
   <% if @restaurant.ratings.collect(&:user_rating).count != 0 %>
     <tr>
       <td><b>Rating:</b></td>
-      <td><%= (1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count %></td>
+      <td><%= ((1.0*(@restaurant.ratings.collect(&:user_rating).sum))/@restaurant.ratings.collect(&:user_rating).count).round(2) %></td>
     </tr>
 
     <tr>

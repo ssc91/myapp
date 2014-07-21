@@ -1,12 +1,16 @@
 class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
+  before_filter :signed_in_user, only: [:index,:show]
+  before_filter :signed_in_restaurant, only: [:edit, :update, :destroy]
+  before_filter :correct_restaurant,   only: [:edit, :update]
+
   def index
     @restaurants = Restaurant.all
     @restaurants_ids_rating_hash = {}
     @restaurants.each do |restaurant|
       if restaurant.ratings.collect(&:user_rating).count != 0
-        @restaurants_ids_rating_hash[restaurant.id] = (1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count
+        @restaurants_ids_rating_hash[restaurant.id] = ((1.0*(restaurant.ratings.collect(&:user_rating).sum))/restaurant.ratings.collect(&:user_rating).count).round(2)
       else
         @restaurants_ids_rating_hash[restaurant.id] = 0
       end      
@@ -88,4 +92,11 @@ class RestaurantsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def correct_restaurant
+      @restaurant = Restaurant.find(params[:id])
+      redirect_to(root_url) unless current_restaurant?(@restaurant)
+    end
 end

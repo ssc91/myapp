@@ -20,4 +20,23 @@ module SessionsRestaurantHelper
     self.current_restaurant = nil
     cookies.delete(:remember_token)
   end
+
+  def current_restaurant?(restaurant)
+    restaurant == current_restaurant
+  end
+
+  def signed_in_restaurant
+    unless restaurantsigned_in?
+      redirect_to root_url
+      flash[:error] = "Please sign in."
+    end
+  end
+
+  def signed_in_user
+    unless restaurantsigned_in? or customersigned_in?
+      redirect_to root_url
+      flash[:error] = "Please sign in."
+    end
+  end
+
 end

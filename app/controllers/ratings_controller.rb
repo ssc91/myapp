@@ -1,4 +1,5 @@
 class RatingsController < ApplicationController
+
   def create
   	@restaurant = Restaurant.find(params[:rating][:restaurant_id])
   	@rating = current_customer.ratings.build(params[:rating])
@@ -13,4 +14,5 @@ class RatingsController < ApplicationController
     @rating.save
     redirect_to @restaurant
   end
+
 end

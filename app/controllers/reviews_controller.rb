@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
   
+  before_filter :signed_in_user, only: [:index,:show]
+
   def index
     if customersigned_in?
       @reviews_customer = Review.find_all_by_user_id(current_customer.id)
@@ -37,4 +39,11 @@ class ReviewsController < ApplicationController
     end
   end
   
+  private
+
+    def correct_customer
+      @customer = Customer.find(params[:id])
+      redirect_to(root_url) unless current_customer?(@customer)
+    end
+
 end

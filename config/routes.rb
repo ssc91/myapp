@@ -13,7 +13,7 @@ Myapp::Application.routes.draw do
 
   resources :restaurants
 
-  resources :customers
+  resources :customers, only: [:create, :show, :edit, :new, :update]
 
 
   root to: 'static_pages#home'
