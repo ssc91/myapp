@@ -29,6 +29,9 @@ class CustomersController < ApplicationController
   # GET /customers/new.json
   def new
     @customer = Customer.new
+    if customersigned_in?
+      redirect_to root_url
+    end
   end
 
   # GET /customers/1/edit

@@ -43,6 +43,9 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/new.json
   def new
     @restaurant = Restaurant.new
+    if restaurantsigned_in?
+      redirect_to root_url
+    end
   end
 
   # GET /restaurants/1/edit

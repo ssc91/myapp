@@ -1,4 +1,4 @@
-<% if !@reviews_customer.nil? or !@reviews_restaurant.nil? %>
+<% if !@reviews_customer.blank? or !@reviews_restaurant.blank? %>
 <div style="width:100%;">
   <h2>Listing reviews</h2>
   <br/><br/>
@@ -41,11 +41,13 @@
     <% end %>
     </table>
   <%end%>
+</div>
 
 <%else%>
- <h2> Sorry !! You don't have any reviews </h2>
+ <div style="width:100%">
+   <h2> Sorry !! You don't have any reviews </h2>
+ </div>
 
-</div>
  <%end%>
 
 
